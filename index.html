@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>First form validation</title>
+  <meta name="author" content="Djiwo Weenas">
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <style type="text/css">
+
+    #wrapper{
+
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    body{
+        font-size: 200%;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 20px 5% 0 5%;
+    }
+
+    input{
+          height: 40px;
+          padding: 5px;
+          font-size: 25px;
+          border-radius: 5px;
+          border: 1px solid gray;
+          width: 70%;
+    }
+
+    .formLabel{
+
+        width: 20%;
+        padding-right: 10px;
+        float: left;
+
+
+    }
+
+    .inputRow{
+        padding-top: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    #fifthRow{
+
+        align-self: center;
+        width: 50%;
+        padding-top: 60px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #submitButton{
+
+        align-self: center;
+    }
+
+    #sixthRow{
+
+        display: flex;
+        justify-content: center;
+
+    }
+
+    #errorMessageParagraph{
+        color: red;
+        font-size: 90% !important;
+
+        text-align: center;
+    }
+
+    #succesMessage{
+        display: none;
+        color: darkgreen;
+        font-size: 90% !important;
+        text-align: center;
+    }
+
+
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+    <div id="wrapper">
+
+
+        <div id="firstRow" class="inputRow">
+            <label for="email" class="formLabel">Email</label>
+            <input type="text" name="emailName" id="email" placeholder="e.g. info@djiwo.be">
+        </div>
+
+        <div id="secondRow" class="inputRow">
+            <label for="phoneNumber" class="formLabel">Phone</label>
+            <input type="text" name="phoneName" id="phoneNumber" placeholder="e.g. 0494945850">
+        </div>
+
+        <div id="thirdRow" class="inputRow">
+            <label for="password" class="formLabel">Password</label>
+            <input type="password" name="passwordName" id="password">
+        </div>
+ 
+        <div id="fourthRow" class="inputRow">
+            <label for="confirmPassword" class="formLabel">Confirm password</label>
+            <input type="password" name="confirmPasswordName" id="confirmPassword">
+        </div>
+
+        <div id="fifthRow" class="inputRow">
+            <input type="submit" id="submitButton" value="Sign up">
+        </div>
+
+        <div id="sixthRow">
+            <p id="errorMessageParagraph"></p>
+        </div>
+
+        <div id="seventhRow">
+            <p id="succesMessage">
+                Great! No problems with the form submission!
+            </p>
+        </div>
+
+
+    </div>
+
+    <script>
+    
+
+        if(typeof jQuery == "undefined"){
+            console.log("jQuery not installed");
+        } else{
+            console.log("jQuery is installed");
+        }
+
+        function isEmail(email) {
+
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            
+            return regex.test(email);
+        }
+
+
+
+
+
+        $("#submitButton").click(function() {
+
+            var errorMessage = "";
+            var fieldsMissing ="";
+
+            if ($("#email").val() == ""){
+
+                fieldsMissing += "The email address is missing<br>";
+            } else if (isEmail($("#email").val()) == false) {
+
+                errorMessage += "The email address you entered is not valid <br>";
+            }
+
+
+            if ($("#phoneNumber").val() == ""){
+
+                fieldsMissing += "The phone number is missing<br>";
+            } else if ($.isNumeric($("#phoneNumber").val()) == false) {
+
+                errorMessage += "your phone number is not numeric <br>";
+
+            }
+
+            if ($("#password").val() == ""){
+
+                fieldsMissing += "Enter a password<br>";
+            }            
+
+            if ($("#confirmPassword").val() == ""){
+
+                fieldsMissing += "Confirm your password<br>";
+            }            
+
+                if ($("#password").val() != $("#confirmPassword").val()) {
+
+                    errorMessage += "Your passwords don't match. <br>";
+                }
+
+            // If there is an error
+            if (errorMessage.length > 0 || fieldsMissing.length > 0){
+                // alternative: if(errorMessage != ""){}
+
+              $("#errorMessageParagraph").html(fieldsMissing+"<br>"+errorMessage);
+              $("#succesMessage").css("display", "none");
+
+
+            } else{
+
+                $("#succesMessage").css("display", "block");
+                $("#errorMessageParagraph").html("");
+            }
+
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
