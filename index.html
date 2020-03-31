@@ -7,87 +7,95 @@
   <meta name="author" content="Djiwo Weenas">
 
 
+<!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- jquery ui -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
+</script>
 
   <style type="text/css">
+  
 
-    #wrapper{
+        #wrapper{
 
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
 
-    }
+        }
 
-    body{
-        font-size: 200%;
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 20px 5% 0 5%;
-    }
+        body{
+            font-size: 200%;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px 5% 0 5%;
+        }
 
-    input{
-          height: 40px;
-          padding: 5px;
-          font-size: 25px;
-          border-radius: 5px;
-          border: 1px solid gray;
-          width: 70%;
-    }
+        input{
+            height: 40px;
+            padding: 5px;
+            font-size: 25px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            width: 70%;
+        }
 
-    .formLabel{
+        .formLabel{
 
-        width: 20%;
-        padding-right: 10px;
-        float: left;
-
-
-    }
-
-    .inputRow{
-        padding-top: 20px;
-        display: flex;
-        align-items: center;
-    }
-
-    #fifthRow{
-
-        align-self: center;
-        width: 50%;
-        padding-top: 60px;
-        display: flex;
-        justify-content: center;
-    }
-
-    #submitButton{
-
-        align-self: center;
-    }
-
-    #sixthRow{
-
-        display: flex;
-        justify-content: center;
-
-    }
-
-    #errorMessageParagraph{
-        color: red;
-        font-size: 90% !important;
-
-        text-align: center;
-    }
-
-    #succesMessage{
-        display: none;
-        color: darkgreen;
-        font-size: 90% !important;
-        text-align: center;
-    }
+            width: 20%;
+            padding-right: 10px;
+            float: left;
 
 
+        }
 
-  </style>
+        .inputRow{
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        #fifthRow{
+
+            align-self: center;
+            width: 50%;
+            padding-top: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #submitButton{
+
+            align-self: center;
+        }
+
+        #sixthRow{
+
+            display: flex;
+            justify-content: center;
+
+        }
+
+        #errorMessageParagraph{
+            color: red;
+            font-size: 90% !important;
+
+            text-align: center;
+        }
+
+        #succesMessage{
+            display: none;
+            color: darkgreen;
+            font-size: 90% !important;
+            text-align: center;
+        }
+
+
+
+    </style>
 
 </head>
 
@@ -119,7 +127,7 @@
         </div>
 
         <div id="fifthRow" class="inputRow">
-            <input type="submit" id="submitButton" value="Sign up">
+            <input type="submit" id="submitButton" class="draggable" value="Sign up">
         </div>
 
         <div id="sixthRow">
@@ -208,6 +216,13 @@
             }
 
         });
+
+
+            $("#submitButton").draggable({
+                cancel:'.no-drag',
+                containment: "parent"
+            })
+
 
 
 
